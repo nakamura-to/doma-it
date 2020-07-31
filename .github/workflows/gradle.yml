@@ -36,7 +36,9 @@ jobs:
     steps:
     - name: Start the MySQL service
       if: matrix.db == 'mysql'
-      run: sudo /etc/init.d/mysql start
+      run: |
+        sudo /etc/init.d/mysql start
+        mysql -uroot -h127.0.0.1 -proot -e 'create database doma_it;'
     - uses: actions/checkout@v2
     - name: Set up JDK
       uses: actions/setup-java@v1
